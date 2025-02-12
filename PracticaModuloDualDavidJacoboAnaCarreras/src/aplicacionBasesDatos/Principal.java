@@ -1,6 +1,6 @@
 package aplicacionBasesDatos;
 
-import java.sql.Date;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -22,7 +22,7 @@ public class Principal {
 			System.out.println("MENU PRINCIPAL");
 			System.out.println("_______________________________________________");
 			System.out.println("1. Mostrar Datos");
-			System.out.println("2. Alta de Datos");
+			System.out.println("2. Insertar Datos");
 			System.out.println("3. Modificar Datos");
 			System.out.println("4. Eliminar Datos");
 			System.out.println("5. Consultar Datos");
@@ -54,7 +54,7 @@ public class Principal {
 
 					
 					//PEDIMOS SUBOPCION
-					System.out.println("Dime una opcion para mostrar por pantalla: ");
+					System.out.println("Dime una opcion: ");
 					subOpcion = input.nextInt();
 					
 					
@@ -218,14 +218,18 @@ public class Principal {
 			// SWITCH 3 Modificar datos
 			case 3:
 				
-				
+				do {
+					
+					System.out.println();
+					System.out.println("2. MODIFICAR DATOS ");
+					System.out.println("_______________________________________________");
 				System.out.println("1. Modificar tabla Contenido");
 				System.out.println("2. Modificar tabla Genero");
 				System.out.println("3. Modificar tabla Actor");
 				System.out.println("4. Modificar tabla Director");
 				System.out.println("5. Salir al menu principal");
 
-				System.out.println("Dime una opcion 2: ");
+				System.out.println("Dime una opcion: ");
 				subOpcion = input.nextInt();
 				
 
@@ -261,6 +265,7 @@ public class Principal {
 				     MIS_DATOS.mostrarContenido();
 					break; 
 					
+					
 				case 2: // GENERO
 					input.nextLine();
 					MIS_DATOS.conectar();
@@ -269,14 +274,25 @@ public class Principal {
 					System.out.println("Modificar datos en la tabla Genero");
 					System.out.println("_______________________________________________");
 					MIS_DATOS.mostrarGenero();
-
+					
+					System.out.println("Dime el id que quieres modificar: ");
+					int id = input.nextInt();
+					
+					
+					input .nextLine();
+					
 					System.out.println("Dime la descripción: ");
 					String descripcion = input.nextLine();
+					
 					
 					System.out.println("Dime un nombre: ");
 					String nombre = input.nextLine();
 					
-					MIS_DATOS.modificarGenero(descripcion, nombre);
+					
+					
+					
+					
+					MIS_DATOS.modificarGenero(id, descripcion, nombre);
 					MIS_DATOS.mostrarGenero();
 
 					break;
@@ -290,17 +306,25 @@ public class Principal {
 					System.out.println("_______________________________________________");
 
 					MIS_DATOS.mostrarActor();
-
+					
+					System.out.println("Dime el id que quieres modificar");
+					id = input.nextInt();
+					
 					System.out.println("Dime el numero de premios: ");
 					int numero_premios = input.nextInt();
 					
 					input.nextLine();
-
+					
 					System.out.println("Dime el tipo: ");
 					String tipo = input.nextLine();
 					
+					
+					
+					
+					
+					
 
-					MIS_DATOS.modificarActor(numero_premios, tipo);
+					MIS_DATOS.modificarActor(id, numero_premios, tipo);
 					MIS_DATOS.mostrarActor();
 
 					break;
@@ -313,16 +337,20 @@ public class Principal {
 					System.out.println("_______________________________________________");
 					
 					MIS_DATOS.mostrarDirector();
-
+					System.out.println("Dime el id que quieres modificar: ");
+					id = input.nextInt();
+					
 					System.out.println("Dime el numero de premios: ");
 					numero_premios = input.nextInt();
+					
+					input.nextLine();
 					
 					System.out.println("Dime su estilo cinematográfico: ");
 					String estilo = input.nextLine();
 					
 					
 					
-					MIS_DATOS.modificarDirector(numero_premios, estilo);
+					MIS_DATOS.modificarDirector(id, numero_premios, estilo);
 					MIS_DATOS.mostrarDirector();
 
 					break;
@@ -331,19 +359,25 @@ public class Principal {
 					System.out.println("Volviendo al menu principal...");
 					break;
 				}
+				
+				} while(subOpcion != 5);
 			break; //BREAK CASE 3
 				
 				
 			//Case 4 Eliminar datos GENERAL
 			case 4: 
-				
+				do {
+					
+					System.out.println();
+					System.out.println("2. ELIMINAR DATOS ");
+					System.out.println("_______________________________________________");
 				System.out.println("1. Eliminar Contenido");
 				System.out.println("2. Eliminar Genero");
 				System.out.println("3. Eliminar Actor");
 				System.out.println("4. Eliminar Director");
 				System.out.println("5. Salir al menu principal");
 
-				System.out.println("Dime una opcion 2: ");
+				System.out.println("Dime una opcion: ");
 				subOpcion = input.nextInt();
 				
 
@@ -379,12 +413,12 @@ public class Principal {
 						MIS_DATOS.conectar();
 						MIS_DATOS.mostrarGenero();
 						
-						System.out.println("Dame el nombre del genero: ");
-						String nombre = input.nextLine();
+						System.out.println("Dame el id que quieres eliminar: ");
+						int id = input.nextInt();
 						
 						
 
-						MIS_DATOS.borrarGenero(nombre);;
+						MIS_DATOS.borrarGenero(id);;
 						
 						MIS_DATOS.mostrarGenero();
 						break;
@@ -436,42 +470,63 @@ public class Principal {
 
 						
 					}
+				
+				} while (subOpcion != 5);
 				break; //BREAK CASE 4
 				
 				
 			//CASE 5 CONSULTAS
 			case 5:
-				
-				System.out.println("1. consulta tabla 1");
-				System.out.println("2. consulta tabla 2");
-				System.out.println("3. consulta tabla 3");
-				System.out.println("4. consulta tabla 4");
+				do {
+					
+					System.out.println();
+					System.out.println("2. CONSULTAS DE DATOS ");
+					System.out.println("_______________________________________________");
+				System.out.println("1. Información de las subscripciones activas de los usuario.");
+				System.out.println("2. Información de las series en activo.");
+				System.out.println("3. Peliculas que superan la media de duración");
+				System.out.println("4. Cantidad de contenido de cada genero");
 				System.out.println("5. Salir al menu principal");
 
-				System.out.println("Dime una opcion 2: ");
+				System.out.println("Dime una opcion: ");
 				subOpcion = input.nextInt();
 				
 				//Segundo Switch Subopcion  de consultas de Datos
 				switch (subOpcion) {
 		
 					case 1:
+						System.out.println();
+						System.out.println("Información de las subscripciones activas de los usuarios");
+						System.out.println("_______________________________________________");
+
 						MIS_DATOS.conectar();
 
 						MIS_DATOS.consulta1();
 						break;
 						
 					case 2: 
+						
+						System.out.println();
+						System.out.println("Información de las series en activo");
+						System.out.println("_______________________________________________");
 						MIS_DATOS.conectar();
 
 						MIS_DATOS.consulta2();
 						break;
 						
 					case 3: 
+						
+						System.out.println();
+						System.out.println("Peliculas que superan la media de duración");
+						System.out.println("_______________________________________________");
 						MIS_DATOS.conectar();
 
 						MIS_DATOS.consulta3();
 						break;
 					case 4: 
+						System.out.println();
+						System.out.println("Cantidad de contenido de cada genero");
+						System.out.println("_______________________________________________");
 						MIS_DATOS.conectar();
 
 						MIS_DATOS.consulta4();
@@ -481,6 +536,7 @@ public class Principal {
 						System.out.println("Volviendo al menu principal...");
 						break;
 					}
+				} while (subOpcion !=5);
 				break;
 				
 				
