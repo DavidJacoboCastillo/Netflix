@@ -1,6 +1,7 @@
 package aplicacionBasesDatos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,7 +51,7 @@ public class Metodos {
 		}
 		
 		} catch (SQLException e) {
-	
+			// TODO Auto-generated catch block
 			System.out.println("Error al mostrar datos");
 		}
 			
@@ -72,6 +73,7 @@ public class Metodos {
 					);
 		}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			
 			System.out.println("Error al mostrar datos");
 		}
@@ -98,7 +100,7 @@ public class Metodos {
 					);
 		}
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("Error al mostrar Datos");
 		}
 	}
@@ -122,7 +124,7 @@ public class Metodos {
 					);
 		}
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("Error al mostrar datos");
 		}
 	}
@@ -135,7 +137,7 @@ public class Metodos {
 		
 		PreparedStatement pstmt;
 		
-		pstmt = conexion.prepareStatement(insertarSql);
+			pstmt = conexion.prepareStatement(insertarSql);
 		
 		
 		pstmt.setString(1, titulo);
@@ -146,7 +148,7 @@ public class Metodos {
 		int filasAfectadas = pstmt.executeUpdate();
 		System.out.println(filasAfectadas + "Filas(s) insertadas(s)");
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("Error al insertar.");
 		}
 		
@@ -172,7 +174,7 @@ public class Metodos {
 		int filasAfectadas = pstmt.executeUpdate();
 		System.out.println(filasAfectadas + "Filas(s) insertadas(s)");
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("Error al insertar");
 		}
 		
@@ -184,7 +186,7 @@ public class Metodos {
 		
 		PreparedStatement pstmt;
 		
-		pstmt = conexion.prepareStatement(insertarSql);
+			pstmt = conexion.prepareStatement(insertarSql);
 		
 		
 		pstmt.setInt(1, numero_premios);
@@ -192,10 +194,10 @@ public class Metodos {
 
 		
 		int filasAfectadas = pstmt.executeUpdate();
-		System.out.println(filasAfectadas + " Filas(s) insertadas(s)");
+		System.out.println(filasAfectadas + "Filas(s) insertadas(s)");
 		
 		} catch (SQLException e) {
-		
+			// TODO Auto-generated catch block
 			System.out.println("Error al insertar");
 		}
 	}
@@ -207,7 +209,7 @@ public class Metodos {
 		
 		PreparedStatement pstmt;
 		
-		pstmt = conexion.prepareStatement(insertarSql);
+			pstmt = conexion.prepareStatement(insertarSql);
 		
 		
 		pstmt.setInt(1, numero_premios);
@@ -217,7 +219,7 @@ public class Metodos {
 		System.out.println(filasAfectadas + " Fila(s) insertada(s)");
 		
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("Error al insertar");
 			}
 	}
@@ -227,16 +229,17 @@ public class Metodos {
 		try {
 		String sentenciaSql = "UPDATE contenido set pais_origen=?,sinopsis=?,estreno=? WHERE titulo=?";
 		sentencia=conexion.prepareStatement(sentenciaSql);
-		
 		sentencia.setString(1, paisOrigen);
-		sentencia.setString(2, sinopsis);
+		
+			sentencia.setString(2, sinopsis);
+		
 		sentencia.setDate(3, java.sql.Date.valueOf(fecha));
 		sentencia.setString(4, titulo);
 		
 		sentencia.executeUpdate();
 		
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("Error al modificar");
 		}
 	}
@@ -245,14 +248,13 @@ public class Metodos {
 		try {
 		String setenceSql= "SELECT * FROM genero";
 		
-		sentencia=conexion.prepareStatement(setenceSql);
+			sentencia=conexion.prepareStatement(setenceSql);
 		
 		
 		ResultSet resultado= sentencia.executeQuery();
 		
 		while(resultado.next())	{
 			System.out.println(
-					resultado.getInt(1) + " , " + 
 					resultado.getString(2) + " ,  " + 
 					resultado.getString(3) + "," 
 					
@@ -260,21 +262,20 @@ public class Metodos {
 					);
 		}
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("Error al mostrar datos");
 		}
 			
 	}
 	
-	public void modificarGenero(int id, String descripcion, String nombre)  {		
+	public void modificarGenero(String descripcion, String nombre)  {//modificar
 		try {
-		String sentenciaSql = "UPDATE genero set descripcion=?, nombre=? WHERE id=?";
+		String sentenciaSql = "UPDATE contenido set descipcion=? WHERE nombre=?";
 		
-		sentencia=conexion.prepareStatement(sentenciaSql);
+			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setString(1, descripcion);
 		sentencia.setString(2, nombre);
-		sentencia.setInt(3, id);
 		
 		sentencia.executeUpdate();
 		} catch (SQLException e) {
@@ -286,14 +287,13 @@ public class Metodos {
 		try {
 		String setenceSql= "SELECT * FROM actor";
 		
-		sentencia=conexion.prepareStatement(setenceSql);
+			sentencia=conexion.prepareStatement(setenceSql);
 		
 		
 		ResultSet resultado= sentencia.executeQuery();
 		
 		while(resultado.next())	{
 			System.out.println(
-					resultado.getInt(1) + " , "  +
 					resultado.getInt(2) + " ,  " + 
 					resultado.getString(3) + "," 
 					
@@ -307,18 +307,15 @@ public class Metodos {
 			
 	}
 	
-	public void modificarActor(int id, int numero_premios, String tipo) {
+	public void modificarActor(int numero_premios, String tipo) {
 		try {
-		String sentenciaSql = "UPDATE actor set numero_premios=?,tipo=? WHERE id=?";
+		String sentenciaSql = "UPDATE contenido set numero_premios=? WHERE tipo=?";
 		
-		sentencia=conexion.prepareStatement(sentenciaSql);
-		
+			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setInt(1, numero_premios);
 		sentencia.setString(2, tipo);
-		sentencia.setInt(3, id);
 		
-
 		sentencia.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Error al modificar");
@@ -329,14 +326,13 @@ public class Metodos {
 		try {
 		String setenceSql= "SELECT * FROM director";
 		
-		sentencia=conexion.prepareStatement(setenceSql);
+			sentencia=conexion.prepareStatement(setenceSql);
 		
 		
 		ResultSet resultado= sentencia.executeQuery();
 		
 		while(resultado.next())	{
 			System.out.println(
-					resultado.getInt(1) + " , " +
 					resultado.getInt(2) + " ,  " + 
 					resultado.getString(3) + " , " 
 					
@@ -345,29 +341,29 @@ public class Metodos {
 			
 		}
 		} catch (SQLException e) {
-			
 			System.out.println("Error al mostrar datos");
 		}
 			
 	}
 	
-	public void modificarDirector(int id, int numero_premios, String estilo) {
+	public void modificarDirector(int numero_premios, String estilo) {
 		try {
-		String sentenciaSql = "UPDATE director set numero_premios=?,estilo=? WHERE id=?";
+		String sentenciaSql = "UPDATE director set numero_premios=? WHERE estilo=?";
 		
-		sentencia=conexion.prepareStatement(sentenciaSql);
+			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setInt(1, numero_premios);
 		sentencia.setString(2, estilo);
-		sentencia.setInt(3, id);
 		
 		sentencia.executeUpdate();
 		} catch (SQLException e) {
-			
 			System.out.println("Error al modificar");
 		}
 		
 	}
+	
+	
+	
 	
 	
 	//ELIMINAR
@@ -375,27 +371,24 @@ public class Metodos {
 		try {
 		String sentenciaSql = "DELETE FROM contenido WHERE titulo = ?";
 		
-		sentencia=conexion.prepareStatement(sentenciaSql);
+			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setString(1, titulo);
 		sentencia.executeUpdate();	
 		} catch (SQLException e) {
-			
 			System.out.println("Error al eliminar");
 		}
 	}
 	
-	public void borrarGenero(int id ) {
+	public void borrarGenero(String nombre) {
 		try {
-		String sentenciaSql = "DELETE FROM genero WHERE id=? ";
+		String sentenciaSql = "DELETE FROM genero WHERE nombre = ?";
 		
 			sentencia=conexion.prepareStatement(sentenciaSql);
 		
-		sentencia.setInt(1, id);
+		sentencia.setString(2, nombre);
 		sentencia.executeUpdate();	
-		
 		} catch (SQLException e) {
-			
 			System.out.println("Error al eliminar");
 		}
 	}
@@ -404,14 +397,12 @@ public class Metodos {
 		try {
 		String sentenciaSql = "DELETE FROM actor WHERE numero_premios = ? AND tipo= ?";
 		
-		sentencia=conexion.prepareStatement(sentenciaSql);
+			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setString(1, numero_premios2);
 		sentencia.setString(2, tipo);
-		
 		sentencia.executeUpdate();	
 		} catch (SQLException e) {
-			
 			System.out.println("Error al eliminar");
 		}
 	}
@@ -420,14 +411,12 @@ public class Metodos {
 		try {
 		String sentenciaSql = "DELETE FROM director WHERE numero_premios = ? AND estilo= ?";
 		
-		sentencia=conexion.prepareStatement(sentenciaSql);
+			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setString(1, numero_premios);
 		sentencia.setString(2, estilo);
-		
 		sentencia.executeUpdate();	
 		} catch (SQLException e) {
-			
 			System.out.println("Error al eliminar");
 		}
 	}
@@ -451,7 +440,7 @@ public class Metodos {
 		}
 		
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("ERROR en la consulta");
 		}
 
@@ -474,7 +463,7 @@ public class Metodos {
 		}
 		
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("ERROR en la consulta");
 		}
 
@@ -497,7 +486,7 @@ public class Metodos {
 		}
 		
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			System.out.println("ERROR en la consulta");
 		}
 
@@ -519,7 +508,7 @@ public class Metodos {
 		}
 		
 		} catch (SQLException e) {
-		
+			// TODO Auto-generated catch block
 			System.out.println("ERROR en la consulta");
 		}
 
