@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 public class Metodos {
 	private Connection conexion = null;
 	PreparedStatement sentencia = null;
-//FIJO	
 	
 	
 	public void conectar() {

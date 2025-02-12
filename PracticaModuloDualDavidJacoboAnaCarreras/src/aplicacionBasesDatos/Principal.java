@@ -15,7 +15,7 @@ public class Principal {
 		int opcion;
 		int subOpcion;
 		
-		//Iniciamos Bucle Menu
+		//Iniciamos Bucle Menu.
 		do {
 			System.out.println();
 			System.out.println("_______________________________________________");
