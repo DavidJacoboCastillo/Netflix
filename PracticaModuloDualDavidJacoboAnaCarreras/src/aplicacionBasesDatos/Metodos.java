@@ -50,7 +50,6 @@ public class Metodos {
 		}
 		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Error al mostrar datos");
 		}
 			

@@ -180,7 +180,7 @@ public class Principal {
 						
 						input.nextLine();
 
-						System.out.println("Dime el tipo: ");
+						System.out.println("Dime el tipo (protagonista, secundario, doblaje): ");
 						String tipo = input.nextLine();
 						
 						MIS_DATOS.conectar();
@@ -198,7 +198,7 @@ public class Principal {
 						numero_premios = input.nextInt();
 						input.nextLine();
 						
-						System.out.println("Dime el estilo cinematográfico: ");
+						System.out.println("Dime el estilo cinematográfico (ej: documental, terror...): ");
 						String estilo = input.nextLine();
 						
 						MIS_DATOS.conectar();
@@ -296,7 +296,7 @@ public class Principal {
 					
 					input.nextLine();
 
-					System.out.println("Dime el tipo: ");
+					System.out.println("Dime el tipo (protagonista, secundario, doblaje): ");
 					String tipo = input.nextLine();
 					
 
@@ -317,7 +317,7 @@ public class Principal {
 					System.out.println("Dime el numero de premios: ");
 					numero_premios = input.nextInt();
 					
-					System.out.println("Dime su estilo cinematográfico: ");
+					System.out.println("Dime el estilo cinematográfico (ej: documental, terror...): ");
 					String estilo = input.nextLine();
 					
 					
@@ -486,7 +486,8 @@ public class Principal {
 				
 			//SALIR
 			case 6:
-				System.out.println("Fin del programa");
+				MIS_DATOS.desconectar();
+				System.out.println("Te has desconectado de la base datos.");
 				break;
 			
 			default: 
