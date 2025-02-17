@@ -1,7 +1,6 @@
 package aplicacionBasesDatos;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -253,8 +252,9 @@ public class Metodos {
 		
 		while(resultado.next())	{
 			System.out.println(
+					resultado.getInt(1) + " , "  +
 					resultado.getString(2) + " ,  " + 
-					resultado.getString(3) + "," 
+					resultado.getString(3) + " , " 
 					
 					
 					);
@@ -266,14 +266,15 @@ public class Metodos {
 			
 	}
 	
-	public void modificarGenero(String descripcion, String nombre)  {//modificar
+	public void modificarGenero(String descripcion, String nombre, int id)  {
 		try {
-		String sentenciaSql = "UPDATE contenido set descipcion=? WHERE nombre=?";
+		String sentenciaSql = "UPDATE genero set descripcion=?, nombre=? WHERE id=?";
 		
 			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setString(1, descripcion);
 		sentencia.setString(2, nombre);
+		sentencia.setInt(3, id);
 		
 		sentencia.executeUpdate();
 		} catch (SQLException e) {
@@ -292,6 +293,7 @@ public class Metodos {
 		
 		while(resultado.next())	{
 			System.out.println(
+					resultado.getInt(1) + " ,  " + 
 					resultado.getInt(2) + " ,  " + 
 					resultado.getString(3) + "," 
 					
@@ -305,14 +307,15 @@ public class Metodos {
 			
 	}
 	
-	public void modificarActor(int numero_premios, String tipo) {
+	public void modificarActor(int numero_premios, String tipo, int id) {
 		try {
-		String sentenciaSql = "UPDATE contenido set numero_premios=? WHERE tipo=?";
+		String sentenciaSql = "UPDATE actor set numero_premios=?, tipo =? WHERE id=?";
 		
 			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setInt(1, numero_premios);
 		sentencia.setString(2, tipo);
+		sentencia.setInt(3, id);
 		
 		sentencia.executeUpdate();
 		} catch (SQLException e) {
@@ -331,6 +334,7 @@ public class Metodos {
 		
 		while(resultado.next())	{
 			System.out.println(
+					resultado.getInt(1) + " ,  " + 
 					resultado.getInt(2) + " ,  " + 
 					resultado.getString(3) + " , " 
 					
@@ -344,14 +348,15 @@ public class Metodos {
 			
 	}
 	
-	public void modificarDirector(int numero_premios, String estilo) {
+	public void modificarDirector(int numero_premios, String estilo, int id) {
 		try {
-		String sentenciaSql = "UPDATE director set numero_premios=? WHERE estilo=?";
+		String sentenciaSql = "UPDATE director set numero_premios=?, estilo = ? WHERE id=?";
 		
 			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setInt(1, numero_premios);
 		sentencia.setString(2, estilo);
+		sentencia.setInt(3, id);
 		
 		sentencia.executeUpdate();
 		} catch (SQLException e) {
@@ -359,8 +364,6 @@ public class Metodos {
 		}
 		
 	}
-	
-	
 	
 	
 	
@@ -378,20 +381,20 @@ public class Metodos {
 		}
 	}
 	
-	public void borrarGenero(String nombre) {
+	public void borrarGenero(int id) {
 		try {
-		String sentenciaSql = "DELETE FROM genero WHERE nombre = ?";
+		String sentenciaSql = "DELETE FROM genero WHERE id = ?";
 		
 			sentencia=conexion.prepareStatement(sentenciaSql);
 		
-		sentencia.setString(2, nombre);
+		sentencia.setInt(1, id);
 		sentencia.executeUpdate();	
 		} catch (SQLException e) {
 			System.out.println("Error al eliminar");
 		}
 	}
 	
-	public void borrarActor(String numero_premios2, String tipo) {
+	public void borrarActor( String numero_premios2, String tipo) {
 		try {
 		String sentenciaSql = "DELETE FROM actor WHERE numero_premios = ? AND tipo= ?";
 		
@@ -407,13 +410,14 @@ public class Metodos {
 	
 	public void borrarDirector(String numero_premios, String  estilo) {
 		try {
-		String sentenciaSql = "DELETE FROM director WHERE numero_premios = ? AND estilo= ?";
+		String sentenciaSql = "DELETE FROM director WHERE numero_premios = ? AND estilo= ? ";
 		
 			sentencia=conexion.prepareStatement(sentenciaSql);
 		
 		sentencia.setString(1, numero_premios);
 		sentencia.setString(2, estilo);
 		sentencia.executeUpdate();	
+		
 		} catch (SQLException e) {
 			System.out.println("Error al eliminar");
 		}
